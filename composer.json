@@ -1,0 +1,12 @@
+{
+    "name": "creode/wordpress-base-theme",
+    "description": "Parent theme for Creode sites.",
+    "type": "wordpress-theme",
+    "authors": [
+        {
+            "name": "Creode Limited",
+            "email": "contact@creode.cvo.uk"
+        }
+    ],
+    "require": {}
+}
