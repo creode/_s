@@ -165,3 +165,12 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+/**
+ * Function to allow arguments to be passed into template files
+ */
+function creode_wordpress_base_theme_get_template_part( string $slug, string $name = null, array $arguments = array() ) {
+	set_query_var('template_arguments', $arguments);
+	get_template_part($slug, $name);
+	set_query_var('template_arguments', null);
+}
