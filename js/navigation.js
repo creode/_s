@@ -21,6 +21,18 @@ var creodeHeaderNavigation = {
 
 				_self.toggle(toggle);
 			});
+
+            _self.elements.toggles.on('open', function() {
+                var toggle = jQuery(this);
+
+                _self.open(toggle);
+            });
+
+            _self.elements.toggles.on('close', function() {
+                var toggle = jQuery(this);
+
+                _self.close(toggle);
+            });
 		},
 
 		toggle: function(toggleButton) {
@@ -30,14 +42,26 @@ var creodeHeaderNavigation = {
 				toggleButton.toggleClass('header__navigation-toggle--open');
 				if(toggleButton.hasClass('header__navigation-toggle--open')) {
 					navigation.addClass('header__navigation--open');
-					toggleButton.trigger('toggle-open');
+					toggleButton.trigger('toggled-opened');
 				} else {
 					navigation.removeClass('header__navigation--open');
-					toggleButton.trigger('toggle-close');
+					toggleButton.trigger('toggled-closed');
 				}
-				toggleButton.trigger('toggle');
+				toggleButton.trigger('toggled');
 			}
-		}
+		},
+
+        open: function(toggleButton) {
+            if(!toggleButton.hasClass('header__navigation-toggle--open')) {
+                this.toggle(toggleButton);
+            }
+        },
+
+        close: function(toggleButton) {
+            if(toggleButton.hasClass('header__navigation-toggle--open')) {
+                this.toggle(toggleButton);
+            }
+        }
 
 };
 

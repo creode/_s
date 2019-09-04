@@ -21,6 +21,18 @@ var creodeHeaderSearchForm = {
 
                 _self.toggle(toggle);
             });
+
+            _self.elements.toggles.on('open', function() {
+                var toggle = jQuery(this);
+
+                _self.open(toggle);
+            });
+
+            _self.elements.toggles.on('close', function() {
+                var toggle = jQuery(this);
+
+                _self.close(toggle);
+            });
         },
 
         toggle: function(toggleButton) {
@@ -30,12 +42,24 @@ var creodeHeaderSearchForm = {
                 toggleButton.toggleClass('header__search-form-toggle--open');
                 if(toggleButton.hasClass('header__search-form-toggle--open')) {
                     form.addClass('header__search-form--open');
-                    toggleButton.trigger('toggle-open');
+                    toggleButton.trigger('toggled-opened');
                 } else {
                     form.removeClass('header__search-form--open');
-                    toggleButton.trigger('toggle-close');
+                    toggleButton.trigger('toggled-closed');
                 }
-                toggleButton.trigger('toggle');
+                toggleButton.trigger('toggled');
+            }
+        },
+
+        open: function(toggleButton) {
+            if(!toggleButton.hasClass('header__search-form-toggle--open')) {
+                this.toggle(toggleButton);
+            }
+        },
+
+        close: function(toggleButton) {
+            if(toggleButton.hasClass('header__search-form-toggle--open')) {
+                this.toggle(toggleButton);
             }
         }
 
