@@ -176,3 +176,22 @@ function creode_wordpress_base_theme_get_template_part( string $slug, string $na
 	get_template_part($slug, $name);
 	set_query_var('template_arguments', null);
 }
+
+/**
+ * Function to update the priorities of actions
+ */
+function update_action_priority(string $action_tag, string $function_name, int $priority) {
+	$original_priority = -1;
+
+	foreach($GLOBALS['wp_filter'][$action_tag]->callbacks as $callback_group_priority => $callback_group) {
+		foreach($callback_group as $callback_name => $callback_data) {
+			if($callback_name == $function_name) {
+				$original_priority = $callback_group_priority;
+			}
+		}
+	}
+	if(-1 < $original_priority) {
+		remove_action($action_tag, $function_name, $original_priority);
+		add_action($action_tag, $function_name, $priority);
+	}
+}
