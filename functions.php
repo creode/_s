@@ -134,6 +134,10 @@ function _s_scripts() {
 }
 add_action( 'wp_enqueue_scripts', '_s_scripts' );
 
+add_action( 'admin_enqueue_scripts', function() {
+	wp_enqueue_script( 'manage-gutenberg-blocks', get_template_directory_uri() . '/js/admin/manage-gutenberg-blocks.js', array(), '10', true );
+});
+
 /**
  * Implement the Custom Header feature.
  */
