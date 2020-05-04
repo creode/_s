@@ -405,7 +405,7 @@ html {
   box-sizing: inherit; }
 
 body {
-  background: #fff;
+  background-color: #fff;
   /* Fallback for when there is no custom background color defined. */ }
 
 hr {
